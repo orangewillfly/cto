@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D魔方模拟器 - Rubik's Cube Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>3D魔方模拟器</h1>
+            <p>Rubik's Cube Simulator</p>
+        </header>
+        
+        <div class="main-content">
+            <div class="canvas-container">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+            
+            <aside class="control-panel">
+                <div class="panel-section">
+                    <h2>统计信息</h2>
+                    <div class="stats">
+                        <div class="stat-item">
+                            <span class="label">步数:</span>
+                            <span class="value" id="moveCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">时间:</span>
+                            <span class="value" id="timerDisplay">00:00</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="label">状态:</span>
+                            <span class="value" id="statusDisplay">已打乱</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>操作按钮</h2>
+                    <div class="button-group">
+                        <button id="scrambleBtn" class="btn btn-primary">打乱魔方</button>
+                        <button id="resetBtn" class="btn btn-secondary">重置</button>
+                        <button id="solveBtn" class="btn btn-secondary">自动求解(演示)</button>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>控制说明</h2>
+                    <div class="instructions">
+                        <div class="instruction-item">
+                            <strong>鼠标操作:</strong>
+                            <p>拖动鼠标调整视角</p>
+                            <p>Shift + 拖动调整距离</p>
+                        </div>
+                        <div class="instruction-item">
+                            <strong>键盘快捷键:</strong>
+                            <ul class="shortcuts">
+                                <li>U/u - 上面顺/逆时针</li>
+                                <li>D/d - 下面顺/逆时针</li>
+                                <li>L/l - 左面顺/逆时针</li>
+                                <li>R/r - 右面顺/逆时针</li>
+                                <li>F/f - 前面顺/逆时针</li>
+                                <li>B/b - 后面顺/逆时针</li>
+                                <li>M/m - 中间层顺/逆时针</li>
+                                <li>E/e - 赤道层顺/逆时针</li>
+                                <li>S/s - 站层顺/逆时针</li>
+                                <li>X/x - 绕X轴顺/逆时针</li>
+                                <li>Y/y - 绕Y轴顺/逆时针</li>
+                                <li>Z/z - 绕Z轴顺/逆时针</li>
+                                <li>Space - 打乱/重置</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel-section">
+                    <h2>视角控制</h2>
+                    <div class="view-buttons">
+                        <button class="btn-view" data-view="front">前视图</button>
+                        <button class="btn-view" data-view="back">后视图</button>
+                        <button class="btn-view" data-view="left">左视图</button>
+                        <button class="btn-view" data-view="right">右视图</button>
+                        <button class="btn-view" data-view="top">顶视图</button>
+                        <button class="btn-view" data-view="bottom">底视图</button>
+                        <button class="btn-view" data-view="iso">等距视图</button>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="rubiks-cube.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
