@@ -4,7 +4,18 @@
 
 A fully-featured 3D Rubik's Cube simulator application built with Three.js for high-quality 3D rendering and interaction.
 
+现在仓库提供两种体验：
+
+- **疯狂动物城极简起始页**（`index.html`）：漫画感视觉、渐变霓虹氛围、可在谷歌 / 百度 / 必应之间一键切换，并包含针对 `linux.do` 与 `nodeseek.com` 的站内谷歌搜索。
+- **3D 魔方模拟器**（`cube.html`）：原有的 Three.js 三维交互体验，完整保留所有功能。
+
 ## 功能特性 | Features
+
+### 疯狂动物城起始页 | Zootopia Start Page
+- ✅ 极简霓虹 + 漫画风背景，呼应《疯狂动物城》的色彩与氛围。
+- ✅ 搜索引擎按钮即时切换：谷歌、百度、必应 + 谷歌 `site:linux.do` / `site:nodeseek.com` 精准搜索。
+- ✅ 自适应搜索表单、玻璃拟态质感、可访问性语义（ARIA 标签、键盘导航）。
+- ✅ 城市速递卡片直达 `cube.html` 以及常用社区链接。
 
 ### 3D 渲染 | 3D Rendering
 - ✅ 使用 Three.js 创建逼真的 3D 魔方模型
@@ -57,8 +68,11 @@ A fully-featured 3D Rubik's Cube simulator application built with Three.js for h
 ## 文件结构 | File Structure
 
 ```
-├── index.html          # 主 HTML 文件
-├── styles.css         # 样式文件
+├── index.html          # 疯狂动物城极简起始页（搜索）
+├── startpage.css      # 起始页视觉样式
+├── startpage.js       # 起始页交互脚本
+├── cube.html          # 3D 魔方模拟器入口
+├── styles.css         # 魔方界面样式
 ├── app.js            # 主应用文件（渲染和交互）
 ├── rubiks-cube.js    # 魔方逻辑文件（状态管理）
 └── README.md         # 本文件
@@ -83,7 +97,12 @@ npx http-server
 
 3. 在浏览器中访问 `http://localhost:8000`
 
-### 操作指南 | Control Guide
+### 起始页使用 | Start Page Usage
+- 默认首页为 `index.html`，提供极简搜索体验。
+- 点击上方按钮可在谷歌 / 百度 / 必应之间即时切换，后两项为谷歌站内搜索（`site:linux.do` 与 `site:nodeseek.com`）。
+- 输入内容后按回车或点击放大镜按钮即会在新标签页打开结果。
+
+### 3D 魔方操作指南 | Control Guide
 
 #### 鼠标操作 | Mouse Controls
 - **左键拖动**: 旋转魔方视角
