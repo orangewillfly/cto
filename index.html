@@ -3,96 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D魔方模拟器 - Rubik's Cube Simulator</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>疯狂动物城起始页 · Minimal Zootopia Start Page</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="startpage.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>3D魔方模拟器</h1>
-            <p>Rubik's Cube Simulator</p>
-        </header>
-        
-        <div class="main-content">
-            <div class="canvas-container">
-                <canvas id="gameCanvas"></canvas>
+    <div class="startpage">
+        <div class="color-orb orb-one" aria-hidden="true"></div>
+        <div class="color-orb orb-two" aria-hidden="true"></div>
+        <div class="color-orb orb-three" aria-hidden="true"></div>
+
+        <main class="console" aria-label="疯狂动物城极简起始页">
+            <header class="hero">
+                <span class="hero-badge">Zootopia Dispatch</span>
+                <h1>
+                    <span class="hero-em">疯狂动物城</span>起始页
+                </h1>
+                <p>简约、灵动、漫画感，一键切换搜索引擎，像朱迪一样高效地搜集线索。</p>
+            </header>
+
+            <section class="search-station" aria-label="搜索站">
+                <div class="engine-switcher" role="tablist" aria-label="搜索引擎切换">
+                    <button type="button" class="engine-btn" data-engine="google" role="tab" aria-selected="true">谷歌</button>
+                    <button type="button" class="engine-btn" data-engine="baidu" role="tab" aria-selected="false">百度</button>
+                    <button type="button" class="engine-btn" data-engine="bing" role="tab" aria-selected="false">必应</button>
+                    <button type="button" class="engine-btn" data-engine="googleLinux" role="tab" aria-selected="false">谷歌 · linux.do</button>
+                    <button type="button" class="engine-btn" data-engine="googleNodeseek" role="tab" aria-selected="false">谷歌 · NodeSeek</button>
+                </div>
+
+                <form id="searchForm" class="search-form" autocomplete="off">
+                    <label class="sr-only" for="searchInput">输入搜索关键词</label>
+                    <input id="searchInput" type="search" name="q" placeholder="和朱迪一起发现新鲜事" spellcheck="false">
+                    <button class="search-submit" type="submit">
+                        <span class="sr-only">开始搜索</span>
+                        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                            <path d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 1 0-.71.71l.27.28v.79L20 21.49 21.49 20zm-6 0a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/>
+                        </svg>
+                    </button>
+                </form>
+                <p class="engine-caption">
+                    当前模式：<strong data-engine-name>谷歌</strong>
+                    <span id="engineDescription">全球范围内最熟悉的结果页，适合查找任何线索。</span>
+                </p>
+            </section>
+
+            <section class="city-pass" aria-label="城市速递">
+                <h2>城市速递</h2>
+                <div class="city-grid">
+                    <a class="city-card" href="cube.html">
+                        <span class="card-label">3D 魔方模拟器</span>
+                        <span class="card-action">进入主站 →</span>
+                    </a>
+                    <a class="city-card" href="https://linux.do" target="_blank" rel="noopener">
+                        <span class="card-label">linux.do 社区</span>
+                        <span class="card-action">灵感采集</span>
+                    </a>
+                    <a class="city-card" href="https://www.nodeseek.com" target="_blank" rel="noopener">
+                        <span class="card-label">NodeSeek 技术城</span>
+                        <span class="card-action">穿梭其中</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <aside class="illustration" aria-hidden="true">
+            <div class="cityline"></div>
+            <div class="character judy">
+                <div class="ear"></div>
+                <div class="ear second"></div>
             </div>
-            
-            <aside class="control-panel">
-                <div class="panel-section">
-                    <h2>统计信息</h2>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="label">步数:</span>
-                            <span class="value" id="moveCount">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="label">时间:</span>
-                            <span class="value" id="timerDisplay">00:00</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="label">状态:</span>
-                            <span class="value" id="statusDisplay">已打乱</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel-section">
-                    <h2>操作按钮</h2>
-                    <div class="button-group">
-                        <button id="scrambleBtn" class="btn btn-primary">打乱魔方</button>
-                        <button id="resetBtn" class="btn btn-secondary">重置</button>
-                        <button id="solveBtn" class="btn btn-secondary">自动求解(演示)</button>
-                    </div>
-                </div>
-                
-                <div class="panel-section">
-                    <h2>控制说明</h2>
-                    <div class="instructions">
-                        <div class="instruction-item">
-                            <strong>鼠标操作:</strong>
-                            <p>拖动鼠标调整视角</p>
-                            <p>Shift + 拖动调整距离</p>
-                        </div>
-                        <div class="instruction-item">
-                            <strong>键盘快捷键:</strong>
-                            <ul class="shortcuts">
-                                <li>U/u - 上面顺/逆时针</li>
-                                <li>D/d - 下面顺/逆时针</li>
-                                <li>L/l - 左面顺/逆时针</li>
-                                <li>R/r - 右面顺/逆时针</li>
-                                <li>F/f - 前面顺/逆时针</li>
-                                <li>B/b - 后面顺/逆时针</li>
-                                <li>M/m - 中间层顺/逆时针</li>
-                                <li>E/e - 赤道层顺/逆时针</li>
-                                <li>S/s - 站层顺/逆时针</li>
-                                <li>X/x - 绕X轴顺/逆时针</li>
-                                <li>Y/y - 绕Y轴顺/逆时针</li>
-                                <li>Z/z - 绕Z轴顺/逆时针</li>
-                                <li>Space - 打乱/重置</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel-section">
-                    <h2>视角控制</h2>
-                    <div class="view-buttons">
-                        <button class="btn-view" data-view="front">前视图</button>
-                        <button class="btn-view" data-view="back">后视图</button>
-                        <button class="btn-view" data-view="left">左视图</button>
-                        <button class="btn-view" data-view="right">右视图</button>
-                        <button class="btn-view" data-view="top">顶视图</button>
-                        <button class="btn-view" data-view="bottom">底视图</button>
-                        <button class="btn-view" data-view="iso">等距视图</button>
-                    </div>
-                </div>
-            </aside>
-        </div>
+            <div class="character nick"></div>
+            <div class="speech-bubble">Ready?</div>
+        </aside>
     </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="rubiks-cube.js"></script>
-    <script src="app.js"></script>
+
+    <script src="startpage.js"></script>
 </body>
 </html>
